@@ -9,16 +9,11 @@ import time
 from datetime import datetime
 from select import select
 import ConfigParser
-try:
-	import piglow
-except:
-	pass
 
 class PassPrinter:
 	conn = None
 	printer = None
 	tmpLocation = "./"
-	piGlowEnable = True
 
 	def __init__(self):
 		#Try to create the tmp location if it doesn't exist
@@ -48,20 +43,9 @@ class PassPrinter:
 		return filename
 
 	def printFile(self, filename):
-		if self.piGlowEnable:
-			piglow.all(0)
 		if filename is not False:
-			if self.piGlowEnable:
-				piglow.green(255)
 			print "PRINT: "+ str(filename) + " [Sent to printer]"
 			self.conn.printFile(self.printer, filename, "Test", {"CutMedia": "2"})
-		else:
-			if self.piGlowEnable:
-				piglow.red(255);
-		if self.piGlowEnable:
-			time.sleep(2)
-			piglow.all(0)
-			piglow.show()
 
 	def mainLoop(self):
 		self.printFile("./pass-example.png")
