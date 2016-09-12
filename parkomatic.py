@@ -64,7 +64,7 @@ class PassPrinter:
 			piglow.show()
 
 	def mainLoop(self):
-		self.printFile()
+		self.printFile("./pass-example.png")
 		sys.exit(0)
 
 
